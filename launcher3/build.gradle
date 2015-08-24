@@ -4,8 +4,24 @@ android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
+    signingConfigs {
+        system {
+            storeFile file('/Users/dongseok0/Downloads/platform_keys/platform.keystore')
+            keyAlias 'OneEduSystem'
+            keyPassword 'Olpcau2015'
+            storePassword 'Olpcau2015'
+        }
+
+        apps {
+            storeFile file('/Users/dongseok0/org.oneedu.signing_key.jks')
+            keyAlias 'OneEdu'
+            keyPassword 'Olpcau2015'
+            storePassword 'Olpcau2015'
+        }
+    }
+
     defaultConfig {
-        applicationId "com.android.launcher3"
+        applicationId "org.oneedu.launcher"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -15,6 +31,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.system
+        }
+        debug {
+            signingConfig signingConfigs.system
         }
     }
 }
